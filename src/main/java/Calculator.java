@@ -41,7 +41,9 @@ class Calculator {
      */
     int fibonacciNumberFinder(int n){
         int firstTerm = 0, secondTerm = 1;
-
+        if(n==0){
+            return 0;
+        }
         for (int i = 1; i <= n; ++i) {
             int nextTerm = firstTerm + secondTerm;
             firstTerm = secondTerm;
