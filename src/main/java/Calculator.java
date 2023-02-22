@@ -49,7 +49,7 @@ class Calculator {
             firstTerm = secondTerm;
             secondTerm = nextTerm;
         }
-        return secondTerm;
+        return firstTerm;
     }
 
 
@@ -63,11 +63,12 @@ class Calculator {
     String intToBinaryNumber(int n){
 
         String binary = "";
-        int id = 0;
-
+        if(n==0){
+            return "0";
+        }
         // Number should be positive
         while (n > 0) {
-            binary =  binary + n % 2;
+            binary =   n % 2+ binary;
             n = n / 2;
         }
         return binary;
