@@ -72,6 +72,7 @@ class Calculator {
             n = n / 2;
         }
 
+
         return  binary;
     }
 
