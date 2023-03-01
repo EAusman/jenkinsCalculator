@@ -71,7 +71,7 @@ class Calculator {
             binary =   n % 2 + binary;
             n = n / 2;
         }
-        return binary;
+        return  binary;
     }
 
     /*
