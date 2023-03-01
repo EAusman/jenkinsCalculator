@@ -68,7 +68,7 @@ class Calculator {
         }
         // Number should be positive
         while (n > 0) {
-            binary =   n % 2+ binary;
+            binary =   n % 2 + binary;
             n = n / 2;
         }
         return binary;
