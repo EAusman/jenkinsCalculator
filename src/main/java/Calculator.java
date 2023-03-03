@@ -73,6 +73,7 @@ class Calculator {
         }
 
 
+
         return  binary;
     }
 
