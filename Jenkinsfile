@@ -44,28 +44,33 @@ pipeline {
         }
 
         stage ('Package') {
-            steps {
-                sh 'mvn package'
-                archiveArtifacts artifacts: 'src/**/*.java'
-                archiveArtifacts artifacts: 'target/*.jar'
-            }
-        }
 
+             steps {
+
+                 sh 'mvn package'
+
+                 archiveArtifacts artifacts: 'src/**/*.java'
+
+                 archiveArtifacts artifacts: 'target/*.jar'
+
+             }
+
+         }
 
 
         stage ('Building image') {
 
-            steps {
+             steps {
 
-                script {
+                 script {
 
-                    dockerImage = docker.build registry + ":${BUILD_NUMBER}"
+                     dockerImage = docker.build registry + ":$BUILD_NUMBER"
 
-                }
+                 }
 
-            }
+             }
 
-        }
+         }
         stage ('Deploy Image') {
                     steps {
 
