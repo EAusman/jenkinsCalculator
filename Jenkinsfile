@@ -2,7 +2,7 @@ pipeline {
     agent any
     tools {
         maven 'apache maven 3.6.3'
-        jdk 'JDK 8'
+        jdk 'JDK 11'
     }
     stages {
         stage ('Clean') {
@@ -79,20 +79,18 @@ pipeline {
             }
 
         }
-        post {
+    }
+    post {
 
-                failure{
+            failure{
 
-                         mail to: 'emma.ausman@gmail.com',
+                     mail to: 'emma.ausman@gmail.com',
 
-                  subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+              subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
 
-                  body: "Something is wrong with ${env.BUILD_URL}"
+              body: "Something is wrong with ${env.BUILD_URL}"
 
-                }
-
-        }
-
+            }
 
     }
 }
