@@ -5,10 +5,9 @@ public class Main {
         Calculator calc = new Calculator();
         String input = "";
         System.out.println("Welcome to the console");
-        System.out.println("Enter a command:");
         Console console = System.console();
         while(input!="quit"){
-            input = console.readLine();
+            input = console.readLine("Enter a command:");
             String[] words = input.split(" ");
             if(words[0]=="add"){
                 System.out.println(calc.add(Integer.valueOf(words[1]),Integer.valueOf(words[2])));
