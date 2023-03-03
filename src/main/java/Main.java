@@ -9,6 +9,9 @@ public class Main {
         while(input!="quit"){
             input = console.readLine("Enter a command:");
             String[] words = input.split(" ");
+            for( String word: words){
+                System.out.println(word);
+            }
             if(words[0]=="add"){
                 System.out.println(calc.add(Integer.valueOf(words[1]),Integer.valueOf(words[2])));
             }
