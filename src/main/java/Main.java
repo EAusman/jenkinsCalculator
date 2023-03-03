@@ -9,25 +9,22 @@ public class Main {
         while(input!="quit"){
             input = console.readLine("Enter a command:");
             String[] words = input.split(" ");
-            for( String word: words){
-                System.out.println(word);
-            }
-            if(words[0]=="add"){
+            if(words[0].equals("add")){
                 System.out.println(calc.add(Integer.valueOf(words[1]),Integer.valueOf(words[2])));
             }
-            else if(words[0]=="subtract"){
+            else if(words[0].equals("subtract")){
                 System.out.println(calc.subtract(Integer.valueOf(words[1]),Integer.valueOf(words[2])));
             }
-            else if(words[0]=="multiply"){
+            else if(words[0].equals("multiply")){
                 System.out.println(calc.multiply(Integer.valueOf(words[1]),Integer.valueOf(words[2])));
             }
-            else if(words[0]=="divide"){
+            else if(words[0].equals("divide")){
                 System.out.println(calc.divide(Integer.valueOf(words[1]),Integer.valueOf(words[2])));
             }
-            else if(words[0]=="fibonacciNumberFinder"){
+            else if(words[0].equals("fibonacciNumberFinder")){
                 System.out.println(calc.fibonacciNumberFinder(Integer.valueOf(words[1])));
             }
-            else if(words[0]=="binary"){
+            else if(words[0].equals("binary")){
                 System.out.println(calc.intToBinaryNumber(Integer.valueOf(words[1])));
             }
         }
