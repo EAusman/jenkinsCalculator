@@ -1,17 +1,8 @@
-environment {
-
-        registry = "emmaaus/calculator"
-
-        registryCredential = 'dockerhub'
-
-        dockerImage=''
-
-}
 pipeline {
     agent any
     tools {
         maven 'apache maven 3.6.3'
-        jdk 'JDK 11'
+        jdk 'JDK 8'
     }
     stages {
         stage ('Clean') {
@@ -44,50 +35,42 @@ pipeline {
         }
 
         stage ('Package') {
-
-             steps {
-
-                 sh 'mvn package'
-
-                 archiveArtifacts artifacts: 'src/**/*.java'
-
-                 archiveArtifacts artifacts: 'target/*.jar'
-
-             }
-
-         }
-
-
+            steps {
+                sh 'mvn package'
+                archiveArtifacts artifacts: 'src/**/*.java'
+                archiveArtifacts artifacts: 'target/*.jar'
+            }
+        }
         stage ('Building image') {
 
-             steps {
+            steps {
 
-                 script {
+                script {
 
-                     dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
 
-                 }
+                }
 
-             }
+            }
 
-         }
+        }
         stage ('Deploy Image') {
-                    steps {
+            steps {
 
-                        script {
+                script {
 
-                            docker.withRegistry('', registryCredential) {
+                    docker.withRegistry('', registryCredential) {
 
-                                dockerImage.push()
-
-                            }
-
-                        }
+                        dockerImage.push()
 
                     }
 
                 }
-        stage ('Remove unused docker image') {
+
+            }
+
+        }
+         stage ('Remove unused docker image') {
 
             steps {
 
@@ -96,20 +79,20 @@ pipeline {
             }
 
         }
+        post {
+
+                failure{
+
+                         mail to: 'emma.ausman@gmail.com',
+
+                  subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+
+                  body: "Something is wrong with ${env.BUILD_URL}"
+
+                }
+
+        }
+
+
     }
-    post {
-
-            failure{
-
-                     mail to: 'emma.ausman@gmail.com',
-
-              subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
-
-              body: "Something is wrong with ${env.BUILD_URL}"
-
-            }
-
-    }
-
-
 }
