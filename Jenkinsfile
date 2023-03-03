@@ -33,13 +33,6 @@ pipeline {
                 }
             }
         }
-        stage ('Package') {
-            steps {
-                sh 'mvn package'
-                archiveArtifacts artifacts: 'src/**/*.java'
-                archiveArtifacts artifacts: 'target/*.jar'
-            }
-        }
          stage ('Package') {
 
                     steps {
